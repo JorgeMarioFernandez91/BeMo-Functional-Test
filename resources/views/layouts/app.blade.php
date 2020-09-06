@@ -70,11 +70,13 @@
                             <li style="padding-right: 30px" ><a class="nav-links" href="#">How To Prepare</a></li>
                             <li style="padding-right: 30px" ><a class="nav-links" href="#">CDA Interview Questions</a></li>
                             <li style="padding-right: 30px" ><a class="nav-links" href="#">Contact Us</a></li>
+
+                            <li style="padding-right: 30px;" ><a class="nav-links" href="#">Update</a></li>
                     
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" 
                                     aria-haspopup="true" aria-expanded="false" v-pre style="color: #000000">
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->username }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

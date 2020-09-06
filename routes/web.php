@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +13,44 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::view('/', 'welcome');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm');
+Route::get('/login/normie', 'Auth\LoginController@showNormieLoginForm');
+Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm');
+Route::get('/register/normie', 'Auth\RegisterController@showNormieRegisterForm');
 
-Auth::routes();
+Route::post('/login/admin', 'Auth\LoginController@adminLogin');
+Route::post('/login/normie', 'Auth\LoginController@normieLogin');
+Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
+Route::post('/register/normie', 'Auth\RegisterController@createNormie');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::view('/home', 'home')->middleware('auth');
+Route::view('/admin', 'admin');
+Route::view('/normie', 'normie');
 
-Auth::routes();
+// Route::group(['middleware' => 'auth:admin'], function () {
+//     Route::view('/admin', 'admin');
+// });
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::group(['middleware' => 'auth:normie'], function () {
+//     Route::view('/normie', 'normie');
+// });

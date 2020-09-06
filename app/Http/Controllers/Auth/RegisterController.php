@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Admin;
+use App\Normie;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -39,6 +42,8 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->middleware('guest:admin');
+        $this->middleware('guest:normie');
     }
 
     /**
@@ -52,6 +57,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -67,7 +73,48 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'username' => $data['username'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    // returns the resgistration page for the admin
+
+    public function showAdminRegisterForm()
+    {
+        return view('auth.register', ['url' => 'admin']);
+    }
+
+    // method for creating an admin
+
+    protected function createAdmin(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        $admin = Admin::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+        return redirect()->intended('login/admin');
+    }
+
+    // returns the resgistration page for the normie
+
+    public function showNormieRegisterForm()
+    {
+        return view('auth.register', ['url' => 'normie']);
+    }
+
+    // method for creating a normie
+
+    protected function createNormie(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        $normie = Normie::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+        return redirect()->intended('login/normie');
     }
 }

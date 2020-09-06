@@ -1,4 +1,22 @@
-@extends('layouts.app')
+@extends('layouts.auth')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
+
+                <div class="card-body">
+                        Hi there, regular user
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+<!-- @extends('layouts.app')
 
 @section('content')
 <div class="container-fluid" style="padding: 0; min-width: 100%;">
@@ -75,29 +93,8 @@
 
             <span>Poole A., Catano, VM., and Cunningham, DP. Predicting performance in Canadian dental schools: the new CDA structured interview, a new personality assessment, and the DAT. Journal of Dental Education. 2007; 71: 664 - 676.</span><br><br>
 
-
         </div>
-
     </div>
-
-
-    <!-- <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div> -->
 </div>
 
 <div class="container-fluid" style="background-color: #000066; min-width: 100%;">
@@ -105,7 +102,7 @@
 
             <div class="column-8" style="color: white; padding: 15px; padding-left: 20px; margin-left: 40px; margin-right: 200px">
 
-                <span >©2013-2016 BeMo Academic Consulting Inc. All rights reserved. Disclaimer & Privacy Policy Contact Us</span>
+                <span >©2013-2016 BeMo Academic Consulting Inc. All rights reserved. <span style="color: #ff6600;">Disclaimer & Privacy Policy Contact Us</span></span>
 
             </div>
             <div class="column-4" style="padding-left: 50px; padding-top: 10px;">
@@ -117,4 +114,4 @@
         </div>
 
 </div>
-@endsection
+@endsection -->

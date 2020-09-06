@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
+use Auth;
+
 
 class LoginController extends Controller
 {
@@ -26,7 +29,8 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -36,5 +40,49 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
+        $this->middleware('guest:normie')->except('logout');
+    }
+
+    // the following defines the login for admins
+
+    public function showAdminLoginForm()
+    {
+        return view('auth.login', ['url' => 'admin']);
+    }
+
+    public function adminLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+
+            return redirect()->intended('/admin');
+        }
+        return back()->withInput($request->only('email', 'remember'));
+    }
+
+    // the following defines the login for normies
+
+    public function showNormieLoginForm()
+    {
+        return view('auth.login', ['url' => 'normie']);
+    }
+
+    public function normieLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        if (Auth::guard('normie')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+
+            return redirect()->intended('/normie');
+        }
+        return back()->withInput($request->only('email', 'remember'));
     }
 }

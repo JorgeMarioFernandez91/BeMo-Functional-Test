@@ -5,8 +5,28 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
+use Illuminate\Auth\AuthenticationException;
+use Auth; 
+
 class Handler extends ExceptionHandler
 {
+
+    // ensures user is sent to the right place if the type in /admin and they are not admin
+    // so this sends them to the admin login page
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
+        if ($request->is('admin') || $request->is('admin/*')) {
+            return redirect()->guest('/login/admin');
+        }
+        if ($request->is('normie') || $request->is('normie/*')) {
+            return redirect()->guest('/login/normie');
+        }
+        return redirect()->guest(route('login'));
+    }
+
     /**
      * A list of the exception types that are not reported.
      *

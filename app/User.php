@@ -10,13 +10,15 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    // note: since we are using the default user guard we do not need to specify $guard like we did in Admin.php
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'username', 'password',
     ];
 
     /**

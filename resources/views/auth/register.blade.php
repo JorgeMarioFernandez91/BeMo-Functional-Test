@@ -1,14 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container" >
+<!-- <div class="container" >
     <div class="row justify-content-center" >
         <div class="col-md-8">
             <div class="card" style="margin-top: 150px;">
-                <div class="card-header">{{ __('Register') }}</div>
+                checking to see if we got the right url if so then use the url parameter and make the header of the form the user based on register credentials
+                <div class="card-header">{{ isset($url) ? ucwords($url) : ""}} {{ __('Register') }}</div>
 
                 <div class="card-body" >
                     <form method="POST" action="{{ route('register') }}">
+                        @csrf -->
+
+
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card"  style="margin-top: 150px;">
+                <div class="card-header"> {{ isset($url) ? ucwords($url) : ""}} {{ __('Register') }}</div>
+
+                <div class="card-body">
+                    @isset($url)
+                    <form method="POST" action='{{ url("register/$url") }}' aria-label="{{ __('Register') }}">
+                    @else
+                    <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
+                    @endisset
                         @csrf
 
                         <div class="form-group row">
@@ -32,6 +50,20 @@
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username">
+
+                                @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

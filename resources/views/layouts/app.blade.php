@@ -35,9 +35,9 @@
 </head>
 <body>
     <div id="app" >
-        <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-sticky-top" >
+        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-white navbar-sticky-top" >
             <div class="container">
-                <!-- changed here! -->
+                changed here!
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="https://cdainterview.com/rw_common/images/bemo-logo2.png" width="167" height="100" alt="Site logo">
                 </a>
@@ -47,14 +47,14 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+                    Left Side Of Navbar
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
+                    Right Side Of Navbar
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+                        Authentication Links
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -99,7 +99,7 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> -->
 
         <main class="py-0">
             @yield('content')

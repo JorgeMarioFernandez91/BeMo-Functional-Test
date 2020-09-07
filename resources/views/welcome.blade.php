@@ -74,8 +74,8 @@
                         <a href="{{ url('/login/admin') }}">Admin Login</a>
 
                         @if (Route::has('register'))
-                        <a href="{{ url('/register/normie') }}">User Register</a>
-                        <a href="{{ url('/register/admin') }}">Admin Register</a>
+                            <a href="{{ url('/register/normie') }}">User Register</a>
+                            <a href="{{ url('/register/admin') }}">Admin Register</a>
                         @endif
                     @endauth
                 </div>
@@ -85,17 +85,6 @@
                 <div class="title m-b-md">
                     Welcome!
                 </div>
-
-                <!-- <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div> -->
             </div>
         </div>
     </body>

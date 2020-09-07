@@ -1,7 +1,5 @@
 <?php
 
-// use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,23 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
 
 Route::view('/', 'welcome');
 Auth::routes();
@@ -44,13 +25,20 @@ Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
 Route::post('/register/normie', 'Auth\RegisterController@createNormie');
 
 Route::view('/home', 'home')->middleware('auth');
-Route::view('/admin', 'admin');
-Route::view('/normie', 'normie');
+// Route::view('/admin', 'admin');
 
-// Route::group(['middleware' => 'auth:admin'], function () {
-//     Route::view('/admin', 'admin');
-// });
+// when contents is used in the url [ ex: localhost:8000/contents] 
+// such as when admin gets redirected to /contents, here we tell
+// contents to get the index method in ContentController
+Route::get('/contents', 'ContentController@index');
+Route::get('/restrictedContents', 'RestrictedContentController@index');
 
-// Route::group(['middleware' => 'auth:normie'], function () {
-//     Route::view('/normie', 'normie');
-// });
+// Route::view('/contents', 'contents');
+// Route::view('/normie', 'normie');
+// Route::view('/normie', 'restrictedContents');
+
+// contents routing ...
+
+
+Route::resource('contents', 'ContentController');
+Route::resource('restrictedContents', 'RestrictedContentController');

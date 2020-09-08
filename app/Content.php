@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Content extends Model
 {
     protected $fillable = [
-        'title',
-        'body',      
+        'text',
+        'bold',   
+        'italics',
+        'strikethrough',
+        'createlinks',   
+        'centertext',
+        'h1',
+        'h2',
+        'h3',
     ];
 }

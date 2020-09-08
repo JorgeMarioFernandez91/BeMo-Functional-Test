@@ -1,15 +1,43 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laravel 7 & MySQL CRUD Tutorial</title>
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
-</head>
-<body>
-  <div class="container">
-    @yield('main')
-  </div>
-  <script src="{{ asset('js/app.js') }}" type="text/js"></script>
-</body>
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <title>{{ config('app.name', 'Laravel') }}</title>
+
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
+
+        <!-- Fonts -->
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <style>
+            .nav-links {
+                color:#000000 !important;
+                text-decoration:none;
+                padding-right: 30px;
+            }
+            .navbar-sticky-top{
+                position: fixed;
+                z-index: 999;
+                opacity:1;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <main class="py-0">
+                @yield('main')
+            </main>
+        </div>
+    </body>
 </html>

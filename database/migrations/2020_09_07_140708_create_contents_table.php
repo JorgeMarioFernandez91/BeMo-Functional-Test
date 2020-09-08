@@ -16,8 +16,15 @@ class CreateContentsTable extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('title');
-            $table->string('body');
+            $table->string('text');
+            $table->boolean('bold')->default(false);
+            $table->boolean('italics')->default(false);
+            $table->boolean('strikethrough')->default(false);
+            $table->boolean('createlinks')->default(false);
+            $table->boolean('centertext')->default(false);
+            $table->boolean('h1')->default(false);
+            $table->boolean('h2')->default(false);
+            $table->boolean('h3')->default(false);
         });
     }
 

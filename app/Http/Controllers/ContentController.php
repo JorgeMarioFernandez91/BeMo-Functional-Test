@@ -45,13 +45,27 @@ class ContentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
-            'body'=>'required',
+            'text'=>'required',
+            'bold'=>'boolean',
+            'italics'=>'boolean',
+            'strikethrough'=>'boolean',
+            'createlinks'=>'boolean',
+            'centertext'=>'boolean',
+            'h1'=>'boolean',
+            'h2'=>'boolean',
+            'h3'=>'boolean',
         ]);
 
         $content = new Content([
-            'title' => $request->get('title'),
-            'body' => $request->get('body'),
+            'text' => $request->get('text'),
+            'bold' => $request->get('bold'),
+            'italics' => $request->get('italics'),
+            'strikethrough' => $request->get('strikethrough'),
+            'createlinks' => $request->get('createlinks'),
+            'centertext' => $request->get('centertext'),
+            'h1' => $request->get('h1'),
+            'h2' => $request->get('h2'),
+            'h3' => $request->get('h3'),
         ]);
         $content->save();
         return redirect('/contents')->with('success', 'Content saved!');
@@ -91,13 +105,27 @@ class ContentController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title'=>'required',
-            'body'=>'required',
+            'text'=>'required',
+            'bold'=>'boolean',
+            'italics'=>'boolean',
+            'strikethrough'=>'boolean',
+            'createlinks'=>'boolean',
+            'centertext'=>'boolean',
+            'h1'=>'boolean',
+            'h2'=>'boolean',
+            'h3'=>'boolean',
         ]);
 
         $content = Content::find($id);
-        $content->title =  $request->get('title');
-        $content->body = $request->get('body');
+        $content->text = $request->get('text');
+        $content->bold = $request->get('bold');
+        $content->italics = $request->get('italics');
+        $content->strikethrough = $request->get('strikethrough');
+        $content->createlinks = $request->get('createlinks');
+        $content->centertext = $request->get('centertext');
+        $content->h1 = $request->get('h1');
+        $content->h2 = $request->get('h2');
+        $content->h3 = $request->get('h3');
         $content->save();
 
         return redirect('/contents')->with('success', 'Content updated!');

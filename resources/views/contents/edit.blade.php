@@ -26,8 +26,7 @@
 
                 <div class="form-group">
                     <label for="body">Body:</label>
-                    <input type="text" class="form-control" name="body" value={{ $content->body }} />
-                </div>
+                    <textarea  class="form-control" class="span6" rows="3" name="body" value={{ $content->body }} ></textarea>
                 </div>
                 <div class="row justify-content-center" style="min-width: 100%">
                     <button type="submit" class="btn btn-primary">Update</button>

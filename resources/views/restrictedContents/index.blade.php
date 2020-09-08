@@ -1,21 +1,8 @@
 @extends('base')
-
 @section('main')
+@include('navbar')
 
 <div class="col-sm-12">
-    <p>simple contents</p>
-    <li class="logout">
-                    <a class="nav-links" href="{{ route('logout') }}"
-                        onclick="   event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
-
   @if(session()->get('success'))
     <div class="alert alert-success">
       {{ session()->get('success') }}  
@@ -23,43 +10,49 @@
   @endif
 </div>
 
-<div class="row">
-    <div class="col-sm-12">
-        <h1 class="display-3">Restricted Content</h1>    
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                <td>ID</td>
-                <td>TITLE</td>
-                <td>BODY</td>
-                <!-- <td colspan = 2>Actions</td> -->
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($restrictedContents as $restrictedContent)
-                <tr>
-                    <td>{{$restrictedContent->id}}</td>
-                    <td>{{$restrictedContent->title}}</td>
-                    <td>{{$restrictedContent->body}}</td>
-                    <!-- <td>
-                        <a href="{{ route('restrictedContents.edit',$restrictedContent->id)}}" class="btn btn-primary">Edit</a>
-                    </td>
-                    <td>
-                        <form action="{{ route('restrictedContents.destroy', $restrictedContent->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger" type="submit">Delete</button>
-                        </form>
-                    </td> -->
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+<div class="container-fluid" style="padding: 0; min-width: 100%;">
+
+    <div class="row" style="margin-left:0; margin-right: 0">
+    <div class="container" style="position:relative; min-width: 100%; padding: 0px;">
+            <img src="https://cdainterview.com/resources/cda-interview-guide.jpg" alt="" class="img-fluid img-size"> 
+                
+            <div class="container" style="position:absolute; top: 50%; left: 0; right: 0;">
+
+                <p class="img-text">CDA Interview Guide</p>
+                <hr style=" top: 55%; left: 0; right: 0;  width: 60%; border: 1px solid white;">
+            
+            </div>
+        </div>
     </div>
+    <div class="row" style="margin-left:0; margin-right: 0">
+    
+        <div class="container" style="position:relative;">
+
+    </div>     
 </div>
 
-<div>
-    <!-- <a style="margin: 19px;" href="{{ route('restrictedContents.create')}}" class="btn btn-primary">New contact</a> -->
+<br><br><br>
+
+<div class="container">
+    @foreach($restrictedContents as $restrictedContent)
+    <span class="row" style="margin-left:0; margin-right:0;">
+        <span class="col-8" style="padding-right: 100px">
+            <span  style="  {{ $restrictedContent->bold == 1 ?            'font-weight: bold' : '' }}; 
+                            {{ $restrictedContent->italics == 1 ?         'font-style: italic' : '' }};
+                            {{ $restrictedContent->strikethrough == 1 ?   'text-decoration: line-through' : '' }}; 
+                            {{ $restrictedContent->createlinks == 1 ?     '' : '' }};
+                            {{ $restrictedContent->centertext == 1 ?      'text-align:center' : '' }};">
+                            
+                            <!-- determines which h style to use -->
+                            <h1>{{ $restrictedContent->h1 == 1 ?              $restrictedContent->text : '' }}</h1>
+                            <h2>{{ $restrictedContent->h2 == 1 ?              $restrictedContent->text : '' }}</h2>
+                            <h3>{{ $restrictedContent->h3 == 1 ?              $restrictedContent->text : '' }}</h3>
+
+                            <!-- if there are no h's chosen then simply use a regular span for the text -->
+                            <span>{{ $restrictedContent->h1 == 0 ? ($restrictedContent->h2 == 0 ? ($restrictedContent->h3 == 0 ? $restrictedContent->text : '' ) : '' ) : '' }}</span> </span ><br><br>
+        </span>
+    </span>
+    @endforeach
 </div>  
 
 @endsection

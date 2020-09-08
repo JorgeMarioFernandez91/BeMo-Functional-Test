@@ -1,7 +1,5 @@
 @extends('base')
-
 @section('main')
-
 @include('navbar')
 
 <div class="col-sm-12">
@@ -25,7 +23,6 @@
             
             </div>
         </div>
-
     </div>
     <div class="row" style="margin-left:0; margin-right: 0">
     
@@ -40,18 +37,19 @@
     @foreach($contents as $content)
     <span class="row" style="margin-left:0; margin-right:0;">
         <span class="col-8" style="padding-right: 100px">
-        <span  style="  {{ $content->bold == 1 ?            'font-weight: bold' : '' }}; 
-                        {{ $content->italics == 1 ?         'font-style: italic' : '' }};
-                        {{ $content->strikethrough == 1 ?   'text-decoration: line-through' : '' }}; 
-                        {{ $content->createlinks == 1 ?     '' : '' }};
-                        {{ $content->centertext == 1 ?      'text-align:center' : '' }};">
-                        
-                        
-                        <h1>{{ $content->h1 == 1 ?          $content->text : '' }}</h1>
-                        <h2>{{ $content->h2 == 1 ?              $content->text : '' }}</h2>
-                        <h3>{{ $content->h3 == 1 ?              $content->text : '' }}</h3>
-                        
-                        </span ><br><br>
+            <span  style="  {{ $content->bold == 1 ?            'font-weight: bold' : '' }}; 
+                            {{ $content->italics == 1 ?         'font-style: italic' : '' }};
+                            {{ $content->strikethrough == 1 ?   'text-decoration: line-through' : '' }}; 
+                            {{ $content->createlinks == 1 ?     '' : '' }};
+                            {{ $content->centertext == 1 ?      'text-align:center' : '' }};">
+                            
+                            <!-- determines which h style to use -->
+                            <h1>{{ $content->h1 == 1 ?              $content->text : '' }}</h1>
+                            <h2>{{ $content->h2 == 1 ?              $content->text : '' }}</h2>
+                            <h3>{{ $content->h3 == 1 ?              $content->text : '' }}</h3>
+
+                            <!-- if there are no h's chosen then simply use a regular span for the text -->
+                            <span>{{ $content->h1 == 0 ? ($content->h2 == 0 ? ($content->h3 == 0 ? $content->text : '' ) : '' ) : '' }}</span> </span ><br><br>
         </span>
         <span class="col">
             <div class="container">

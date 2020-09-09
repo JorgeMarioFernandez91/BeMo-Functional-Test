@@ -25,20 +25,15 @@ Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
 Route::post('/register/normie', 'Auth\RegisterController@createNormie');
 
 Route::view('/home', 'home')->middleware('auth');
-// Route::view('/admin', 'admin');
 
-// when contents is used in the url [ ex: localhost:8000/contents] 
-// such as when admin gets redirected to /contents, here we tell
-// contents to get the index method in ContentController
 Route::get('/contents', 'ContentController@index');
 Route::get('/restrictedContents', 'RestrictedContentController@index');
 
-// Route::view('/contents', 'contents');
-// Route::view('/normie', 'normie');
-// Route::view('/normie', 'restrictedContents');
-
 // contents routing ...
-
-
 Route::resource('contents', 'ContentController');
 Route::resource('restrictedContents', 'RestrictedContentController');
+
+// image routing ...
+// Route::view('/images', 'contents');
+// Route::get('/contents', 'ImageController@index', 'ContentController@index'); // ?????
+Route::resource('images', 'ImageController');

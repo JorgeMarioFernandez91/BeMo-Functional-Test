@@ -18,7 +18,7 @@
           @csrf
           <div class="form-group">    
               <label for="text">Text:</label>
-              <input type="text" class="form-control" name="text"/>
+              <textarea type="text" class="form-control" name="text" ></textarea>
           </div>
 
           <div class="form-check">

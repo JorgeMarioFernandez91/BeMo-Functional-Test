@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Content;
+use App\Image;
+
+use Illuminate\Support\Facades\DB;
 
 class ContentController extends Controller
 {
@@ -15,10 +18,19 @@ class ContentController extends Controller
      */
     public function index()
     {
-        $contents = Content::all();
-
+        
         // OG code
-        return view('contents.index', compact('contents'));
+        // $contents = Content::all();
+        // return view('contents.index', compact('contents'));
+
+        // we get info from both content and image DB's
+        $contents = Content::all();
+        $images = Image::all();
+        return view('contents.index', compact('contents', 'images'));
+
+        // $images = DB::table('images')->get();
+        // $contents = DB::table('contents')->get();
+        // return view('contents.index', ['images','contents']);
 
         // get sent to admin.blade.php after we create new content
         // return view('admin', compact('contents'));  

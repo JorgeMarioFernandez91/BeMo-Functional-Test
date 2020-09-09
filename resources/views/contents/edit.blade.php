@@ -21,7 +21,7 @@
                 <div class="form-group">
 
                     <label for="text">Text:</label>
-                    <input type="text" class="form-control" name="text" value={{ $content->text }} />
+                    <textarea type="text" class="form-control" name="text" >{{ $content->text }}</textarea>
                 </div>
                 <!-- <div class="form-group">    
               <label for="text">Text:</label>
@@ -31,7 +31,7 @@
           <div class="form-check">
             <!-- this hidden input will help deliver a 0 and not null to the database preventing an error from popping up! -->
             <input type="hidden" name="bold" id="bold" value="0">
-            <input class="form-check-input" type="checkbox" name="bold" id="bold" value=1>
+            <input class="form-check-input" type="checkbox" name="bold" id="bold" value=1 {{ $content->bold ? 'checked' : '' }}>
             <label class="form-check-label" for="bold">
               Bold
             </label>
@@ -39,7 +39,7 @@
 
           <div class="form-check">
             <input type="hidden" name="italics" id="italics" value="0">
-            <input class="form-check-input" type="checkbox" name="italics" id="italics" value=1>
+            <input class="form-check-input" type="checkbox" name="italics" id="italics" value=1 {{ $content->italics ? 'checked' : '' }}>
             <label class="form-check-label" for="italics">
               Italics
             </label>
@@ -47,7 +47,7 @@
 
           <div class="form-check">
             <input type="hidden" name="strikethrough" id="strikethrough" value="0">
-            <input class="form-check-input" type="checkbox" name="strikethrough" id="strikethrough" value=1>
+            <input class="form-check-input" type="checkbox" name="strikethrough" id="strikethrough" value=1 {{ $content->strikethrough ? 'checked' : '' }}>
             <label class="form-check-label" for="strikethrough">
               Strikethrough
             </label>
@@ -55,7 +55,7 @@
 
           <div class="form-check">
           <input type="hidden" name="createlinks" id="createlinks" value="0">
-            <input class="form-check-input" type="checkbox" name="createlinks" id="createlinks" value=1>
+            <input class="form-check-input" type="checkbox" name="createlinks" id="createlinks" value=1 {{ $content->createlinks ? 'checked' : '' }}>
             <label class="form-check-label" for="createlinks">
               Createlinks
             </label>
@@ -63,7 +63,7 @@
 
           <div class="form-check">
           <input type="hidden" name="centertext" id="centertext" value="0">
-            <input class="form-check-input" type="checkbox" name="centertext" id="centertext" value=1>
+            <input class="form-check-input" type="checkbox" name="centertext" id="centertext" value=1 {{ $content->centertext ? 'checked' : '' }}>
             <label class="form-check-label" for="centertext">
               Centertext
             </label>
@@ -71,7 +71,7 @@
 
           <div class="form-check" id="form-h1">
             <input type="hidden" name="h1" id="h1" value="0">
-            <input class="form-check-input" type="checkbox" name="h1" id="h1" value=1 onclick="hideH2H3()">
+            <input class="form-check-input" type="checkbox" name="h1" id="h1" value=1 onclick="hideH2H3()" {{ $content->h1 ? 'checked' : '' }}>
             <label class="form-check-label" for="h1">
               H1
             </label>
@@ -79,7 +79,7 @@
 
           <div class="form-check" id="form-h2">
             <input type="hidden" name="h2" id="h2" value="0">
-            <input class="form-check-input" type="checkbox" name="h2" id="h2" value=1 onclick="hideH1H3()">
+            <input class="form-check-input" type="checkbox" name="h2" id="h2" value=1 onclick="hideH1H3()" {{ $content->h2 ? 'checked' : '' }}>
             <label class="form-check-label" for="h2">
               H2
             </label>
@@ -87,7 +87,7 @@
 
           <div class="form-check" id="form-h3">
             <input type="hidden" name="h3" id="h3" value="0">
-            <input class="form-check-input" type="checkbox" name="h3" id="h3" value=1 onclick="hideH1H2()">
+            <input class="form-check-input" type="checkbox" name="h3" id="h3" value=1 onclick="hideH1H2()" {{ $content->h3 ? 'checked' : '' }}>
             <label class="form-check-label" for="h3">
               H3
             </label>

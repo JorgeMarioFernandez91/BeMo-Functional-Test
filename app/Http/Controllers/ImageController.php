@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\RestrictedContent;
-use App\Content;
 use App\Image;
+use App\Content;
 
-class RestrictedContentController extends Controller
+use Illuminate\Support\Facades\DB;
+
+class ImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,13 +18,19 @@ class RestrictedContentController extends Controller
      */
     public function index()
     {
-        // $restrictedContents = Content::all();
+        // $images = Image::all();
 
-        // return view('restrictedContents.index', compact('restrictedContents'));  
-
-        $restrictedContents = Content::all();
+        // // return view('images.index', compact('images'));
+        // return view('contents.index', compact('images'));
+       
+        // we get info from both content and image DB's
+        $contents = Content::all();
         $images = Image::all();
-        return view('restrictedContents.index', compact('restrictedContents', 'images'));
+        return view('contents.index', compact('contents', 'images'));
+
+        // $images = DB::table('images')->get();
+        // $contents = DB::table('contents')->get();
+        // return view('contents.index', ['images','contents']);
     }
 
     /**
@@ -33,7 +40,7 @@ class RestrictedContentController extends Controller
      */
     public function create()
     {
-        return view('restrictedContents.create');
+        return view('images.create');
     }
 
     /**
@@ -45,17 +52,16 @@ class RestrictedContentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
-            'body'=>'required',
+            'image_name'=>'required',
         ]);
 
-        $restrictedContent = new Content([  // make sure to take from Content !
-            'title' => $request->get('title'),
-            'body' => $request->get('body'),
+        $image = new Image([
+            'image_name' => $request->get('image_name'),
         ]);
-        $restrictedContent->save();
-        return redirect('/restrictedContents')->with('success', 'Content saved!');
-    
+        $image->save();
+        // return redirect('/images')->with('success', 'Image saved!');
+        return redirect('/contents')->with('success', 'Image saved!');
+
     }
 
     /**
@@ -77,7 +83,8 @@ class RestrictedContentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $image = Image::find($id);
+        return view('images.edit', compact('image'));   
     }
 
     /**
@@ -89,7 +96,15 @@ class RestrictedContentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'image_name'=>'required',
+        ]);
+
+        $image = Image::find($id);
+        $image->image_name =  $request->get('image_name');
+        $image->save();
+
+        return redirect('/images')->with('success', 'Image updated!');
     }
 
     /**
@@ -100,6 +115,9 @@ class RestrictedContentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $image = Image::find($id);
+        $image->delete();
+
+        return redirect('/images')->with('success', 'Image deleted!');
     }
 }

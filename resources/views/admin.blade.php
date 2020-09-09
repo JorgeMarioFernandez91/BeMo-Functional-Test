@@ -133,7 +133,7 @@
         </div>
         <div class="column-4" style="padding-left: 50px; padding-top: 10px;">
 
-            <img src="images/social_media_images.PNG" alt="">
+            <img src="photos/social_media_images.PNG" alt="">
 
         </div>
 

@@ -37,3 +37,10 @@ Route::resource('restrictedContents', 'RestrictedContentController');
 // Route::view('/images', 'contents');
 // Route::get('/contents', 'ImageController@index', 'ContentController@index'); // ?????
 Route::resource('images', 'ImageController');
+
+
+
+// Route::get('mail/send', 'MailController@send')->name('mail/send'); # this works in url
+Route::post('mail/send/', 'MailController@send2')->name('mail/send'); # this works in url
+
+Route::view('/contactus', 'mail');

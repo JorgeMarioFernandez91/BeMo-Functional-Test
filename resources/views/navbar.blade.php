@@ -17,7 +17,8 @@
                 <li style="padding-right: 30px;" ><a class="nav-links" href="#">Main</a></li>
                 <li style="padding-right: 30px" ><a class="nav-links" href="#">How To Prepare</a></li>
                 <li style="padding-right: 30px" ><a class="nav-links" href="#">CDA Interview Questions</a></li>
-                <li style="padding-right: 30px" ><a class="nav-links" href="#">Contact Us</a></li>
+                <li style="padding-right: 30px" ><a class="nav-links" href="{{url('/contactus')}}">Contact Us</a></li>
+                
                 
                 <li class="logout">
                     <a class="nav-links" href="{{ route('logout') }}"
@@ -33,4 +34,6 @@
             </ul>
         </div>
     </div>
+    
+
 </nav>
